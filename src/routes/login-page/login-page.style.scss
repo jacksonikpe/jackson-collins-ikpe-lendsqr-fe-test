@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  background-color: yellow;
+  height: 100vh;
+
+  .left-side {
+    flex: 1;
+    padding: 6em;
+
+    .logo {
+      height: 100px;
+      width: auto;
+    }
+  }
+
+  .right-side {
+    flex: 1;
+    padding: 6em;
+  }
+}
