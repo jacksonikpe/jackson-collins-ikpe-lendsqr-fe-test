@@ -1,0 +1,96 @@
+@font-face {
+  font-family: "AvenirNextBold";
+  src: url("../../assets/fonts/AvenirNext-Bold.ttf");
+}
+@font-face {
+  font-family: "AvenirNext";
+  src: url("../../assets/fonts/AvenirNext.otf");
+}
+
+$font-family: AvenirNext;
+$color1: #ffffff;
+$color2: #39cdcc;
+
+.LoginFormContainer {
+  margin: 10rem;
+  width: 100%;
+
+  h1 {
+    font-family: AvenirNextBold;
+    font-size: 4rem;
+    color: #213f7d;
+
+    margin-bottom: 0.8rem;
+  }
+  p {
+    color: #545f7d;
+    font-size: 2rem;
+    font-family: $font-family;
+    margin-bottom: 5rem;
+  }
+  .form-inputs {
+    font-family: $font-family;
+    display: flex;
+    flex-direction: column;
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: background-color 5000s;
+    }
+
+    .password-input {
+      position: relative;
+      .show-password {
+        position: absolute;
+        right: 0;
+        top: 0;
+        translate: -50% 100%;
+        background-color: $color1;
+        color: $color2;
+        padding: 0;
+        border: 0;
+        font-weight: 500;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 5rem;
+      border: 2px solid rgba(84, 95, 125, 0.15);
+      margin-bottom: 2.4rem;
+      border-radius: 5px;
+      padding-left: 1.6rem;
+    }
+    .forget-button {
+      width: 13rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: $color2;
+      background-color: $color1;
+      border: none;
+      padding: 0;
+      margin: 0 0 3rem 0;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .login-button {
+    width: 100%;
+    height: 4.47rem;
+    background-color: $color2;
+    color: $color1;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
