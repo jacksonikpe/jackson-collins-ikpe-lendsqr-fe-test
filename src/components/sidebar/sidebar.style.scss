@@ -1,1 +1,88 @@
+$Backgroudcolor: #fff;
 
+.sidebarContainer {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: $Backgroudcolor;
+  width: 28.3rem;
+  height: 100vh;
+  z-index: 99;
+  padding-top: 9.9rem;
+  padding-left: 0;
+  box-shadow: 0px 5px 20px 0px #0000000a;
+  overflow-y: scroll;
+
+  .menu ul {
+    margin: 0 0 0.83em 0;
+    padding: 3rem 0 0 0;
+    li {
+      display: flex;
+      align-items: center;
+      list-style-type: none;
+      padding-left: 3rem;
+      height: 4rem;
+      & :hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+
+      .menuButton {
+        border: none;
+        background-color: $Backgroudcolor;
+        padding: 0;
+        display: flex;
+        align-items: center;
+
+        .menuText {
+          margin-left: 1rem;
+          font-size: 1.6rem;
+        }
+      }
+      .switch {
+        position: relative;
+        &::after {
+          position: absolute;
+          content: url("../../assets/img/switch-organization-dropdown.svg");
+          top: 0;
+          right: 0;
+          translate: 2rem 0;
+        }
+      }
+    }
+    .selected {
+      background: #f3fcfc;
+
+      .menuButton {
+        background: #f3fcfc;
+        .menuText {
+          color: #213f7d;
+        }
+      }
+    }
+    .menuHeaders {
+      height: 4rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      padding-left: 3rem;
+      color: #545f7d;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+    }
+  }
+}
+
+.sidebarContainer::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.sidebarContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.sidebarContainer::-webkit-scrollbar-thumb {
+  background: #888;
+}
