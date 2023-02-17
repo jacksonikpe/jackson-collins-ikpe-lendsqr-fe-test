@@ -1,0 +1,6 @@
+.userPageCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.6rem;
+  margin-top: 4rem;
+}
