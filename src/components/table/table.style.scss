@@ -1,0 +1,87 @@
+$Backgroudcolor: #fff;
+$Color: #545f7d;
+
+.tableCard {
+  padding: 3rem 3rem 3.9rem 3rem;
+  margin-top: 4rem;
+  width: 100%;
+  background-color: $Backgroudcolor;
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  overflow-x: scroll;
+
+  table {
+    width: 100%;
+    background-color: $Backgroudcolor;
+    overflow-x: auto;
+
+    th {
+      text-align: left;
+      font-size: 1.1rem;
+      color: $Color;
+    }
+
+    tr {
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+
+      td {
+        color: $Color;
+        font-size: 1.1rem;
+        font-weight: 400;
+        border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+        padding: 8px;
+      }
+    }
+
+    .tableFilter {
+      padding: 0;
+      background-color: $Backgroudcolor;
+      border: none;
+    }
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin: 2.7rem 0 2.7rem 0;
+  span {
+    color: $Color;
+    font-size: 1.6rem;
+    select {
+      background-color: rgba(33, 63, 125, 0.1);
+      color: #213f7d;
+      padding: 0.7rem 1.2rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      border-radius: 4px;
+      border: none;
+    }
+  }
+  .page-nav {
+    background-color: rgba(33, 63, 125, 0.1);
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0.639rem 0.872;
+    border-radius: 4px;
+    color: #213f7d;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .page-button {
+    border: none;
+    background-color: #e5e5e5;
+    color: $Color;
+  }
+  .page-number {
+    &:disabled {
+      border: none;
+      background-color: #e5e5e5;
+    }
+  }
+}
