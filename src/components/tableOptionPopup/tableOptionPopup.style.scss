@@ -1,0 +1,52 @@
+.optionPopup {
+  position: fixed;
+  z-index: 1;
+  width: 18rem;
+  height: 13rem;
+  color: #545f7d;
+  background-color: #fff;
+  border: 1px solid #545f7d0a;
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  padding: 20px;
+  display: none;
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    background-color: #fff;
+    color: #545f7d;
+    border: none;
+    margin-top: 2rem;
+
+    .text {
+      margin-left: 0.5rem;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.optionPopup.open {
+  display: block;
+}
+
+.optionPopup .popupContent {
+  padding: 10px;
+}
+
+.optionPopup .closeButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.optionPopup .closeButton:hover {
+  color: gray;
+}

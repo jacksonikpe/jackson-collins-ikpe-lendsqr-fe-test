@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ReactComponent as TableOptions } from "../../assets/img/tableOption-icon.svg";
 import { Column } from "react-table";
 import { format } from "date-fns";
@@ -6,6 +6,7 @@ import axios from "axios";
 import Table from "../table/table.components";
 
 import "./usersTable.style.scss";
+import TableOptionPopup from "../tableOptionPopup/tableOptionPopup.component";
 
 export interface User {
   createdAt: string;
@@ -54,6 +55,14 @@ const UsersTable = () => {
   const [data, setData] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
+  const [optionPopupOpen, setOptionPopupOpen] = useState<boolean>(false);
+  const [selectedRowId, setSelectedRowId] = useState<string>("");
+  const [optionPopupPosition, setOptionPopupPosition] = useState<{
+    left: number;
+    top: number;
+  }>({ left: 0, top: 0 });
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const columns: Column<User>[] = React.useMemo(
     () => [
@@ -74,11 +83,52 @@ const UsersTable = () => {
           const randomIndex = Math.floor(Math.random() * statuses.length);
           return statuses[randomIndex];
         },
+        Cell: ({ value }: { value: string }) => {
+          let color;
+          switch (value) {
+            case "inactive":
+              color = "gray";
+              break;
+            case "pending":
+              color = "orange";
+              break;
+            case "blacklisted":
+              color = "red";
+              break;
+            case "active":
+              color = "green";
+              break;
+            default:
+              color = "white";
+          }
+          return (
+            <div
+              className={
+                color === "gray"
+                  ? "statusPill grayPill"
+                  : color === "orange"
+                  ? "statusPill yellowPill"
+                  : color === "green"
+                  ? "statusPill greenPill"
+                  : color === "red"
+                  ? "statusPill redPill"
+                  : "statusPill"
+              }
+            >
+              {value}
+            </div>
+          );
+        },
       },
       {
         Header: " ",
-        Cell: () => (
-          <button className="tableOptions">
+        accessor: "id",
+        Cell: ({ value }) => (
+          <button
+            ref={buttonRef}
+            className="tableOptions"
+            onClick={(e) => handlePopupOpen(value, e)}
+          >
             <TableOptions />
           </button>
         ),
@@ -86,6 +136,21 @@ const UsersTable = () => {
     ],
     []
   );
+
+  const handlePopupOpen = (id: string, e: any) => {
+    // Get the position and dimensions of the table cell containing the button
+    const cellRect = e.currentTarget.getBoundingClientRect();
+
+    // Calculate the position of the popup based on the cell position and dimensions
+    const popupLeft = cellRect.left + cellRect.width / 2 - 110;
+    const popupTop = cellRect.top + cellRect.height + 5;
+
+    // Set the position of the popup and open it
+    setOptionPopupPosition({ left: popupLeft, top: popupTop });
+
+    setOptionPopupOpen((prevState) => !prevState);
+    setSelectedRowId(id);
+  };
 
   const fetchUsers = async () => {
     try {
@@ -103,9 +168,20 @@ const UsersTable = () => {
   useEffect(() => {
     fetchUsers();
   }, [page]);
+
   return (
     <div>
       <Table data={data} columns={columns} />
+      {optionPopupOpen && (
+        <div>
+          <TableOptionPopup
+            isOpen={optionPopupOpen}
+            position={optionPopupPosition}
+            onClose={() => setOptionPopupOpen(false)}
+            rowId={selectedRowId}
+          />
+        </div>
+      )}
     </div>
   );
 };

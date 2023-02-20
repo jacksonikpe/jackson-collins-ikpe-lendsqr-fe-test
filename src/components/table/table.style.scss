@@ -19,6 +19,8 @@ $Color: #545f7d;
       text-align: left;
       font-size: 1.1rem;
       color: $Color;
+      padding-bottom: 1.3rem;
+      font-weight: 600;
     }
 
     tr {
@@ -34,6 +36,7 @@ $Color: #545f7d;
         font-weight: 400;
         border-bottom: 1px solid rgba(33, 63, 125, 0.1);
         padding: 8px;
+        padding-left: 0;
       }
     }
 
