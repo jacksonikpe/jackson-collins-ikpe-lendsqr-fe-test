@@ -1,0 +1,190 @@
+@font-face {
+  font-family: "SFCompactText";
+  src: url("../../assets/fonts/SFCompactText.ttf");
+}
+
+$color: #213f7d;
+$color2: #39cdcc;
+
+.userDetailsContainer {
+  .userDetailsHeader {
+    h2 {
+      color: $color;
+      font-size: 2.4rem;
+      font-weight: 500;
+    }
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .userButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e5e5e5;
+      width: 17rem;
+      height: 4rem;
+      padding: 1.2rem 1.6rem;
+      border-radius: 8px;
+      margin-left: 2rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .buttonGroup {
+      background-color: red;
+      display: flex;
+    }
+
+    .blacklist {
+      border: 1px solid #e4033b;
+      color: #e4033b;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .activate {
+      border: 1px solid $color2;
+      color: $color2;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+  }
+
+  .userDetailsInfoNavigation {
+    height: 21rem;
+    background-color: #fff;
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+    box-shadow: 3px 5px 20px 0px #0000000a;
+    border-radius: 4px;
+    padding: 3rem 3rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .navigation {
+      ul {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+        padding-left: 4rem;
+
+        li {
+          font-size: 1.6rem;
+          font-weight: 400;
+          color: #000000cc;
+          font-family: SFCompactText;
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            color: $color2;
+          }
+        }
+        .active {
+          position: relative;
+          color: $color2;
+          &::after {
+            display: block;
+            position: absolute;
+            content: "";
+            height: 2px;
+            width: 17rem;
+            background-color: $color2;
+            bottom: -1rem;
+            left: -3rem;
+          }
+        }
+      }
+    }
+
+    .details {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .divider {
+        margin: 0 3rem;
+      }
+      .userTier {
+        .text {
+          font-size: 1.4rem;
+          color: #545f7d;
+        }
+      }
+      .profileImg {
+      }
+      .identification {
+        margin-left: 2rem;
+        h3 {
+          margin: 0 0 0.8rem 0;
+          font-weight: 500;
+          font-size: 2.2rem;
+          color: $color;
+        }
+        .id {
+          margin: 0;
+          font-size: 1.4rem;
+          color: #545f7d;
+        }
+      }
+      .amount {
+        color: $color;
+        .fig {
+          font-weight: 500;
+          font-size: 2.2rem;
+          margin: 0 0 0.8rem 0;
+        }
+        .bankdetails {
+          font-size: 1.2rem;
+          margin: 0;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .userDetailsBody {
+    box-shadow: 3px 5px 20px 0px #0000000a;
+    padding: 3rem;
+    margin-bottom: 15.3rem;
+    background-color: #fff;
+
+    .InfoHeader {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: $color;
+      margin-bottom: 1.5rem;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-auto-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .col {
+      padding: 1.5rem 0;
+      .infoTitle {
+        color: #545f7d;
+        font-weight: 400;
+        font-size: 1.2rem;
+        padding: 0;
+        margin: 0 0 0.8rem 0;
+      }
+      .info {
+        padding: 0;
+        margin: 0;
+        color: #545f7d;
+        font-weight: 500;
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
