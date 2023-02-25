@@ -1,10 +1,74 @@
+import { useEffect, useState, useContext } from "react";
+import usersContext from "../../context/usersContext";
 import { ReactComponent as ProfileImg } from "../../assets/img/userDetailImg.svg";
 import { ReactComponent as Star } from "../../assets/img/star-icon.svg";
 import { ReactComponent as EmptyStar } from "../../assets/img/emptyStarIcon.svg";
 import { ReactComponent as Divider } from "../../assets/img/dividerIcons.svg";
 import "./userDetailsInfo.style.scss";
 
+interface User {
+  createdAt: string;
+  orgName: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+  lastActiveDate: string;
+  profile: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    avatar: string;
+    gender: string;
+    bvn: string;
+    address: string;
+    currency: string;
+  };
+  guarantor: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    gender: string;
+    address: string;
+  };
+  accountBalance: string;
+  accountNumber: string;
+  socials: {
+    facebook: string;
+    instagram: string;
+    twitter: string;
+  };
+  education: {
+    level: string;
+    employmentStatus: string;
+    sector: string;
+    duration: string;
+    officeEmail: string;
+    monthlyIncome: string[];
+    loanRepayment: string;
+  };
+  id: string;
+}
+
 const UserDetails = () => {
+  const { user } = useContext(usersContext);
+  const {
+    profile: { firstName, lastName, phoneNumber, bvn, gender, avatar },
+    education: {
+      level,
+      employmentStatus,
+      officeEmail,
+      duration,
+      sector,
+      monthlyIncome,
+      loanRepayment,
+    },
+    socials: { twitter, instagram, facebook },
+    guarantor,
+    id,
+    accountBalance,
+    accountNumber,
+    email,
+  } = user;
   return (
     <div className="userDetailsContainer">
       <div className="userDetailsHeader">
@@ -16,12 +80,16 @@ const UserDetails = () => {
       </div>
       <div className="userDetailsInfoNavigation">
         <div className="details">
-          <div className="profileImg">
-            <ProfileImg />
-          </div>
+          {avatar ? (
+            <img src={avatar} alt="profile" />
+          ) : (
+            <div className="profileImg">
+              <ProfileImg />
+            </div>
+          )}
           <div className="identification">
-            <h3 className="name">Grace Effiom</h3>
-            <p className="id">LSQFf587g90</p>
+            <h3 className="name">{`${firstName} ${lastName}`}</h3>
+            <p className="id">{id}</p>
           </div>
           <div className="divider">
             <Divider />
@@ -44,8 +112,8 @@ const UserDetails = () => {
             <Divider />
           </div>
           <div className="amount">
-            <p className="fig">200,000.00</p>
-            <p className="bankdetails">9912345678/providus Bank</p>
+            <p className="fig">{accountBalance}</p>
+            <p className="bankdetails">{accountNumber}/providus Bank</p>
           </div>
         </div>
         <nav className="navigation">
@@ -64,23 +132,25 @@ const UserDetails = () => {
         <div className="row">
           <div className="col">
             <p className="infoTitle">FULL NAME</p>
-            <p className="info">Grace Effiom</p>
+            <p className="info">{`${firstName} ${lastName}`}</p>
           </div>
           <div className="col">
             <p className="infoTitle">PHONE NUMBER</p>
-            <p className="info">07060780922</p>
+            <p className="info">{phoneNumber}</p>
           </div>
           <div className="col">
             <p className="infoTitle">EMAIL ADDRESS</p>
-            <p className="info">grace@gmail.com</p>
+            <p className="info" style={{ wordWrap: "break-word" }}>
+              {email}
+            </p>
           </div>
           <div className="col">
             <p className="infoTitle">BVN</p>
-            <p className="info">07060780922</p>
+            <p className="info">{bvn}</p>
           </div>
           <div className="col">
             <p className="infoTitle">GENDER</p>
-            <p className="info">Female</p>
+            <p className="info">{gender}</p>
           </div>
           <div className="col">
             <p className="infoTitle">MARITAL STATUS</p>
@@ -106,31 +176,35 @@ const UserDetails = () => {
         <div className="row">
           <div className="col">
             <p className="infoTitle">LEVEL OF EDUCATION</p>
-            <p className="info">B.Sc</p>
+            <p className="info">{level}</p>
           </div>
           <div className="col">
             <p className="infoTitle">EMPLOYMENT STATUS</p>
-            <p className="info">Employed</p>
+            <p className="info">{employmentStatus}</p>
           </div>
           <div className="col">
             <p className="infoTitle">SECTOR OF EMPLOYMENT</p>
-            <p className="info">FinTech</p>
+            <p className="info">{sector}</p>
           </div>
           <div className="col">
             <p className="infoTitle">DURATION OF EMPLOYMENT</p>
-            <p className="info">2 years</p>
+            <p className="info">{duration}</p>
           </div>
           <div className="col">
             <p className="infoTitle">OFFICE EMAIL</p>
-            <p className="info">grace@lendsqr.com</p>
+            <p className="info" style={{ wordWrap: "break-word" }}>
+              {officeEmail}
+            </p>
           </div>
           <div className="col">
             <p className="infoTitle">MONTHLY INCOME</p>
-            <p className="info">200,000.00-400,000.00</p>
+            <p className="info">
+              {monthlyIncome[0]}-{monthlyIncome[1]}
+            </p>
           </div>
           <div className="col">
             <p className="infoTitle">LOAN REPAYMENT</p>
-            <p className="info">40,000</p>
+            <p className="info">{loanRepayment}</p>
           </div>
         </div>
         <hr
@@ -144,15 +218,15 @@ const UserDetails = () => {
         <div className="row">
           <div className="col">
             <p className="infoTitle">TWITTER</p>
-            <p className="info">@grace_effiom</p>
+            <p className="info">{twitter}</p>
           </div>
           <div className="col">
             <p className="infoTitle">FACEBOOK</p>
-            <p className="info">Grace Effiom</p>
+            <p className="info">{facebook}</p>
           </div>
           <div className="col">
             <p className="infoTitle">INSTAGRAM</p>
-            <p className="info">@grace_effiom</p>
+            <p className="info">{instagram}</p>
           </div>
         </div>
         <hr
@@ -166,19 +240,19 @@ const UserDetails = () => {
         <div className="row">
           <div className="col">
             <p className="infoTitle">FULL NAME</p>
-            <p className="info">Debby Ogana</p>
+            <p className="info">{`${guarantor.firstName} ${guarantor.lastName}`}</p>
           </div>
           <div className="col">
             <p className="infoTitle">PHONE NUMBER</p>
-            <p className="info">07060780922</p>
+            <p className="info">{phoneNumber}</p>
           </div>
           <div className="col">
-            <p className="infoTitle">EMAIL ADDRESS</p>
-            <p className="info">debby@gmail.com</p>
+            <p className="infoTitle">ADDRESS</p>
+            <p className="info">{guarantor.address}</p>
           </div>
           <div className="col">
-            <p className="infoTitle">RELATIONSHIP</p>
-            <p className="info">Sister</p>
+            <p className="infoTitle">GENDER</p>
+            <p className="info">{guarantor.gender}</p>
           </div>
         </div>
       </div>

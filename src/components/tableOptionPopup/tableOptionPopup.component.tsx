@@ -20,12 +20,12 @@ const TableOptionPopup = ({
   position,
   rowId,
 }: OptionPopupProps) => {
-  const { getUsers } = useContext(usersContext);
+  const { getUser } = useContext(usersContext);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const buttonEventHandler = (id: number) => {
-    getUsers?.(id);
+    getUser?.(id);
     navigate("/user");
   };
 

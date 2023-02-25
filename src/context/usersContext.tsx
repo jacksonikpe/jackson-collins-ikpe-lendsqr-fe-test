@@ -45,17 +45,103 @@ export interface User {
 }
 
 const usersContext = createContext<{
+  user: User;
   users: User[];
   loading: boolean;
-  getUsers?: (id: number) => Promise<void>;
+  getUser?: (id: number) => Promise<void>;
 }>({
+  user: {
+    createdAt: "",
+    orgName: "",
+    userName: "",
+    email: "",
+    phoneNumber: "",
+    lastActiveDate: "",
+    profile: {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      avatar: "",
+      gender: "",
+      bvn: "",
+      address: "",
+      currency: "",
+    },
+    guarantor: {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      gender: "",
+      address: "",
+    },
+    accountBalance: "",
+    accountNumber: "",
+    socials: {
+      facebook: "",
+      instagram: "",
+      twitter: "",
+    },
+    education: {
+      level: "",
+      employmentStatus: "",
+      sector: "",
+      duration: "",
+      officeEmail: "",
+      monthlyIncome: [],
+      loanRepayment: "",
+    },
+    id: "",
+  },
   users: [],
   loading: true,
 });
 
 export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<User[]>([]);
-  // const [user, setUser] = useState<User | undefined>();
+  const [userId, setUserId] = useState<string>("");
+  const [user, setUser] = useState<User>({
+    createdAt: "",
+    orgName: "",
+    userName: "",
+    email: "",
+    phoneNumber: "",
+    lastActiveDate: "",
+    profile: {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      avatar: "",
+      gender: "",
+      bvn: "",
+      address: "",
+      currency: "",
+    },
+    guarantor: {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      gender: "",
+      address: "",
+    },
+    accountBalance: "",
+    accountNumber: "",
+    socials: {
+      facebook: "",
+      instagram: "",
+      twitter: "",
+    },
+    education: {
+      level: "",
+      employmentStatus: "",
+      sector: "",
+      duration: "",
+      officeEmail: "",
+      monthlyIncome: [],
+      loanRepayment: "",
+    },
+    id: "",
+  });
+  // const [userId, setUserId] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchUsers = async () => {
@@ -71,19 +157,25 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const getUsers = async (id: number) => {
+  const getUser = async (id: number) => {
     try {
       setLoading(true);
       const response = await axios.get<User>(
         `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
       );
       const { data } = response;
-      // setUser(data);
-      localStorage.setItem("user", JSON.stringify(data));
+
+      await localStorage.setItem("user", JSON.stringify(data));
+      setUserId(data.id);
+      await setUser(JSON.parse(localStorage.getItem("user") || "{}"));
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user") || "{}"));
+  }, [userId]);
 
   useEffect(() => {
     fetchUsers();
@@ -93,8 +185,10 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
     // }
   }, []);
 
+  console.log(user, "testing");
+
   return (
-    <usersContext.Provider value={{ users, loading, getUsers }}>
+    <usersContext.Provider value={{ user, users, loading, getUser }}>
       {children}
     </usersContext.Provider>
   );

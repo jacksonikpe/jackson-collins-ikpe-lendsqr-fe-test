@@ -116,7 +116,10 @@ $color2: #39cdcc;
           color: #545f7d;
         }
       }
-      .profileImg {
+      img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
       }
       .identification {
         margin-left: 2rem;
