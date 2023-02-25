@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { ReactComponent as TableOptions } from "../../assets/img/tableOption-icon.svg";
 import { Column } from "react-table";
 import { format } from "date-fns";
-import axios from "axios";
 import Table from "../table/table.components";
+import usersContext from "../../context/usersContext";
 
 import "./usersTable.style.scss";
 import TableOptionPopup from "../tableOptionPopup/tableOptionPopup.component";
@@ -52,6 +52,7 @@ export interface User {
 }
 
 const UsersTable = () => {
+  const { users } = useContext(usersContext);
   const [data, setData] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
@@ -152,26 +153,9 @@ const UsersTable = () => {
     setSelectedRowId(id);
   };
 
-  const fetchUsers = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users`
-      );
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, [page]);
-
   return (
     <div>
-      <Table data={data} columns={columns} />
+      <Table data={users} columns={columns} />
       {optionPopupOpen && (
         <div>
           <TableOptionPopup

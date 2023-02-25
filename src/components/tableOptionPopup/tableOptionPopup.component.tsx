@@ -1,8 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ViewDetails } from "../../assets/img/viewDetailsIcon.svg";
 import { ReactComponent as BlacklistUser } from "../../assets/img/blackListUser.svg";
 import { ReactComponent as ActivateUser } from "../../assets/img/activateUsersIcons.svg";
 import "./tableOptionPopup.style.scss";
+
+import usersContext from "../../context/usersContext";
 
 interface OptionPopupProps {
   isOpen: boolean;
@@ -17,7 +20,14 @@ const TableOptionPopup = ({
   position,
   rowId,
 }: OptionPopupProps) => {
+  const { getUsers } = useContext(usersContext);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  const buttonEventHandler = (id: number) => {
+    getUsers?.(id);
+    navigate("/user");
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -36,16 +46,24 @@ const TableOptionPopup = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, onClose]);
+
   return (
     <div
       ref={ref}
       className={`optionPopup ${isOpen ? "open" : ""}`}
       style={{ left: position.left, top: position.top }}
     >
-      <button style={{ marginTop: 0 }} className="viewDetails button">
-        <ViewDetails />
-        <span className="text">View Details</span>
-      </button>
+      <Link to="/user">
+        <button
+          type="button"
+          onClick={() => buttonEventHandler(parseInt(rowId))}
+          style={{ marginTop: 0 }}
+          className="viewDetails button"
+        >
+          <ViewDetails />
+          <span className="text">View Details</span>
+        </button>
+      </Link>
       <button className="blacklistUser button">
         <BlacklistUser />
         <span className="text">Blacklist User</span>
