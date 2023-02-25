@@ -55,7 +55,7 @@ const usersContext = createContext<{
 
 export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<User[]>([]);
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState<User | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchUsers = async () => {
@@ -77,7 +77,9 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
       const response = await axios.get<User>(
         `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
       );
-      console.log(response.data);
+      const { data } = response;
+      // setUser(data);
+      localStorage.setItem("user", JSON.stringify(data));
     } catch (error) {
       console.error(error);
     }
@@ -85,6 +87,10 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     fetchUsers();
+    // let localStoredUser = localStorage.getItem("user");
+    // if (localStoredUser) {
+    //   setUser(JSON.parse(localStoredUser));
+    // }
   }, []);
 
   return (
