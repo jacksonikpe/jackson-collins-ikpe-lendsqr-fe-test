@@ -185,8 +185,6 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
     // }
   }, []);
 
-  console.log(user, "testing");
-
   return (
     <usersContext.Provider value={{ user, users, loading, getUser }}>
       {children}
