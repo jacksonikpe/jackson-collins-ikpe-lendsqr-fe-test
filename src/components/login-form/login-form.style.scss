@@ -81,6 +81,9 @@ $color2: #39cdcc;
     }
   }
   .login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 4.47rem;
     background-color: $color2;
