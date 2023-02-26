@@ -2,3 +2,9 @@
   background-color: #e5e5e5;
   padding: 15.8rem 6rem 0 34.3rem;
 }
+
+@media screen and (max-width: 1245px) {
+  .layoutContainer {
+    padding: 15.8rem 6rem 0 15.8rem;
+  }
+}

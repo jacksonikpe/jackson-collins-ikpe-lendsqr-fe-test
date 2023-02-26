@@ -12,6 +12,7 @@ $Backgroudcolor: #fff;
   padding-left: 0;
   box-shadow: 0px 5px 20px 0px #0000000a;
   overflow-y: scroll;
+  transform: 0.3s ease;
 
   .menu ul {
     margin: 0 0 0.83em 0;
@@ -85,4 +86,24 @@ $Backgroudcolor: #fff;
 /* Handle */
 .sidebarContainer::-webkit-scrollbar-thumb {
   background: #888;
+}
+
+@media screen and (max-width: 1245px) {
+  .sidebarContainer {
+    width: 9rem;
+    .menu {
+      ul li {
+        .menuButton {
+          .menuText {
+            display: none;
+          }
+        }
+      }
+      ul {
+        .menuHeaders {
+          display: none;
+        }
+      }
+    }
+  }
 }
