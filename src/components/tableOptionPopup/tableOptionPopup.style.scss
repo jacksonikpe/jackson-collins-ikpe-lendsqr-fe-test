@@ -25,6 +25,10 @@
     .text {
       margin-left: 0.5rem;
       font-size: 1.4rem;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
     }
   }
 }

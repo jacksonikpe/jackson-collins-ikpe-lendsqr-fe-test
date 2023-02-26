@@ -47,7 +47,7 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
                     {column.render("Header")}{" "}
                     {index < headerGroup.headers.length - 2 && (
                       <button className="tableFilter">
-                        <TableFilter />
+                        <TableFilter style={{ width: "1.3rem" }} />
                       </button>
                     )}
                   </th>

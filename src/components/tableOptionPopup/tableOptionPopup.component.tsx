@@ -53,7 +53,7 @@ const TableOptionPopup = ({
       className={`optionPopup ${isOpen ? "open" : ""}`}
       style={{ left: position.left, top: position.top }}
     >
-      <Link to="/user">
+      <Link style={{ textDecoration: "none" }} to="/user">
         <button
           type="button"
           onClick={() => buttonEventHandler(parseInt(rowId))}
