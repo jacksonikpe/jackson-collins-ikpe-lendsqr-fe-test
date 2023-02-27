@@ -8,3 +8,9 @@
     padding: 15.8rem 6rem 0 15.8rem;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .layoutContainer {
+    padding: 15.8rem 6rem 0 6rem;
+  }
+}

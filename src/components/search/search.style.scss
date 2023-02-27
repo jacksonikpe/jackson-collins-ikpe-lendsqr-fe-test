@@ -1,0 +1,27 @@
+.search {
+  position: relative;
+  input {
+    width: 34.4rem;
+    height: 4rem;
+    border: 0.15rem solid rgba(84, 95, 125, 0.15);
+    border-radius: 8px 0 0 8px;
+    border-right: none;
+    padding: 1.2rem 2rem;
+  }
+  button {
+    position: absolute;
+    right: 0px;
+    translate: 100% -100%;
+    background-color: #39cdcc;
+    width: 5.6rem;
+    height: 4rem;
+    border-radius: 0 8px 8px 0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

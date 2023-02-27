@@ -5,4 +5,23 @@
     font-weight: 500;
     margin: 0;
   }
+  .search {
+    display: none;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .search button {
+    translate: 100% - 0%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .userContainer {
+    .search {
+      display: flex;
+    }
+    .search input {
+      width: 22rem;
+    }
+  }
 }

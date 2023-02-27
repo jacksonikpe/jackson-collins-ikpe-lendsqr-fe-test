@@ -77,3 +77,25 @@
     }
   }
 }
+
+@media screen and (max-width: 960px) {
+  .topBarContainer {
+    .search {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topBarContainer {
+    .info {
+      justify-content: end;
+      .docs {
+        display: none;
+      }
+      .notification {
+        display: none;
+      }
+    }
+  }
+}
