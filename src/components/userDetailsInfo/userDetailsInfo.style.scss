@@ -19,6 +19,10 @@ $color2: #39cdcc;
     justify-content: space-between;
     align-items: center;
 
+    .userButtonGroup {
+      display: flex;
+    }
+
     .userButton {
       display: flex;
       align-items: center;
@@ -187,6 +191,62 @@ $color2: #39cdcc;
         color: #545f7d;
         font-weight: 500;
         font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .userDetailsContainer {
+    .userDetailsInfoNavigation {
+      height: auto;
+      .details {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .identification {
+          margin-left: 0;
+          .name {
+            margin-top: 1rem;
+          }
+          .id {
+            text-align: center;
+          }
+        }
+        .amount {
+          .fig {
+            text-align: center;
+          }
+        }
+        .userTier {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      .divider {
+        display: none;
+      }
+      .navigation {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 741px) {
+  .userDetailsContainer {
+    .userDetailsHeader {
+      flex-direction: column;
+      align-items: flex-start;
+      .userButtonGroup {
+        display: flex;
+        flex-direction: column;
+      }
+      .userButton {
+        margin-left: 0;
+        margin-bottom: 1rem;
       }
     }
   }

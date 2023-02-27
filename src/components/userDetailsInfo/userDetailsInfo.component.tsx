@@ -1,53 +1,10 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import usersContext from "../../context/usersContext";
 import { ReactComponent as ProfileImg } from "../../assets/img/userDetailImg.svg";
 import { ReactComponent as Star } from "../../assets/img/star-icon.svg";
 import { ReactComponent as EmptyStar } from "../../assets/img/emptyStarIcon.svg";
 import { ReactComponent as Divider } from "../../assets/img/dividerIcons.svg";
 import "./userDetailsInfo.style.scss";
-
-interface User {
-  createdAt: string;
-  orgName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  lastActiveDate: string;
-  profile: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    avatar: string;
-    gender: string;
-    bvn: string;
-    address: string;
-    currency: string;
-  };
-  guarantor: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    gender: string;
-    address: string;
-  };
-  accountBalance: string;
-  accountNumber: string;
-  socials: {
-    facebook: string;
-    instagram: string;
-    twitter: string;
-  };
-  education: {
-    level: string;
-    employmentStatus: string;
-    sector: string;
-    duration: string;
-    officeEmail: string;
-    monthlyIncome: string[];
-    loanRepayment: string;
-  };
-  id: string;
-}
 
 const UserDetails = () => {
   const { user } = useContext(usersContext);
@@ -73,13 +30,14 @@ const UserDetails = () => {
     <div className="userDetailsContainer">
       <div className="userDetailsHeader">
         <h2>User Details</h2>
-        <span style={{ display: "flex" }}>
+        <span className="userButtonGroup">
           <button className="userButton blacklist">Blacklist User</button>
           <button className="userButton activate">Activate User</button>
         </span>
       </div>
       <div className="userDetailsInfoNavigation">
         <div className="details">
+          <div className="profileName"></div>
           {avatar ? (
             <img src={avatar} alt="profile" />
           ) : (
