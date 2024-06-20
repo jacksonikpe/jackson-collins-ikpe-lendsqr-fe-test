@@ -219,3 +219,4 @@ const UserDetails = () => {
 };
 
 export default UserDetails;
+//user details info

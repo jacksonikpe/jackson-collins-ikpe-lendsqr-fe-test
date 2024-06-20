@@ -5,7 +5,7 @@ import "./layout.style.scss";
 type Props = {
   children?: React.ReactNode;
 };
-
+//layout
 const Layout = ({ children }: Props) => {
   return (
     <div className="layoutContainer">

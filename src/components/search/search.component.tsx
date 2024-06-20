@@ -12,3 +12,4 @@ const Search = () => {
 };
 
 export default Search;
+//search component

@@ -142,3 +142,4 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
 };
 
 export default Table;
+//table component
